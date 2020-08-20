@@ -8,6 +8,7 @@
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+<script src="CheckBox.js"> </script>
 
 <p><b>PLEASE NOTE:</b> it is recomended you minify your css first, you can do so <a target="_blank" href="https://www.uglifycss.com/">here</a>.</p>
 
@@ -18,14 +19,23 @@
 <p>Author: <input id="AUTHORtHingy"></input></p>
 <p>Website: <input id="MATCHtHingy"></input></p>
 <p>CSS: <input id="CSStHingy"></input></p>
+<p><label for="HideGen">Hide Generated:</label>
+<input style="left: 131px;" type="checkbox" id="HideGen" onclick="CheckHideGen()"></p>
 <button onclick="minify();THINNGY();">Generate UserStyle</button>
 
 <script>
 function minify() {
+if (ShowGen == 1) {
 document.getElementById('TheUserStyle').style = "display:block";
 var str = document.getElementById('CSStHingy').value;
 str = str.replace(/\s\s+/g, ' ');
 document.getElementById("TheStyles").innerHTML = str;
+	} else {
+document.getElementById('TheUserStyle').style = "display:none";
+var str = document.getElementById('CSStHingy').value;
+str = str.replace(/\s\s+/g, ' ');
+document.getElementById("TheStyles").innerHTML = str;
+	}
 }
 
 function THINNGY() {
@@ -49,6 +59,12 @@ document.getElementById("nAmesPace").innerHTML = str;
 
 var str = document.getElementById('NAMEtHingy').value;
 document.getElementById("nAme").innerHTML = str;
+
+if (ShowGen == 0) {
+	copyToClipboard('#TheUserStyle');
+	} else {
+		return;
+		}
 }
 
 function copyToClipboard(element) {
